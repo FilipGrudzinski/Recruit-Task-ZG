@@ -54,14 +54,46 @@
 		14C90DCE224441D100E985E8 /* Cinkciarz Recruit Task */ = {
 			isa = PBXGroup;
 			children = (
-				14C90DCF224441D100E985E8 /* AppDelegate.swift */,
-				14C90DD1224441D200E985E8 /* ViewController.swift */,
-				14C90DD3224441D200E985E8 /* Main.storyboard */,
-				14C90DD6224441D300E985E8 /* Assets.xcassets */,
-				14C90DD8224441D300E985E8 /* LaunchScreen.storyboard */,
+				14C90DE42244433800E985E8 /* Supporting Files */,
+				14C90DE32244431300E985E8 /* Controller */,
+				14C90DE22244430800E985E8 /* View */,
+				14C90DE1224442FD00E985E8 /* Model */,
 				14C90DDB224441D300E985E8 /* Info.plist */,
 			);
 			path = "Cinkciarz Recruit Task";
+			sourceTree = "<group>";
+		};
+		14C90DE1224442FD00E985E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14C90DE22244430800E985E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14C90DD3224441D200E985E8 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14C90DE32244431300E985E8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				14C90DCF224441D100E985E8 /* AppDelegate.swift */,
+				14C90DD1224441D200E985E8 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		14C90DE42244433800E985E8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				14C90DD6224441D300E985E8 /* Assets.xcassets */,
+				14C90DD8224441D300E985E8 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FTSDJRAZR8;
 				INFOPLIST_FILE = "Cinkciarz Recruit Task/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -292,7 +325,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "fg.Cinkciarz-Recruit-Task";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -303,6 +336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FTSDJRAZR8;
 				INFOPLIST_FILE = "Cinkciarz Recruit Task/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,7 +344,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "fg.Cinkciarz-Recruit-Task";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
