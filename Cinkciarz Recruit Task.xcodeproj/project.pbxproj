@@ -18,9 +18,11 @@
 		14C90DED224449CE00E985E8 /* MainVCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DEC224449CE00E985E8 /* MainVCTableViewCell.swift */; };
 		14C90DEF224449EF00E985E8 /* RocketLaunchVCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DEE224449EF00E985E8 /* RocketLaunchVCTableViewCell.swift */; };
 		14C90DF122444A7B00E985E8 /* SwitchRLVCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DF022444A7B00E985E8 /* SwitchRLVCTableViewCell.swift */; };
+		F6A915DEF5E54E6EFAA3E3C2 /* Pods_Cinkciarz_Recruit_Task.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD32619DFE0941CFCA12F37B /* Pods_Cinkciarz_Recruit_Task.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		037A5272FD899E5B7A2428E2 /* Pods-Cinkciarz Recruit Task.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cinkciarz Recruit Task.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cinkciarz Recruit Task/Pods-Cinkciarz Recruit Task.debug.xcconfig"; sourceTree = "<group>"; };
 		14C90DCC224441D100E985E8 /* Cinkciarz Recruit Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cinkciarz Recruit Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C90DCF224441D100E985E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14C90DD1224441D200E985E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +36,8 @@
 		14C90DEC224449CE00E985E8 /* MainVCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCTableViewCell.swift; sourceTree = "<group>"; };
 		14C90DEE224449EF00E985E8 /* RocketLaunchVCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchVCTableViewCell.swift; sourceTree = "<group>"; };
 		14C90DF022444A7B00E985E8 /* SwitchRLVCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchRLVCTableViewCell.swift; sourceTree = "<group>"; };
+		915143A3E2FC6016C8A1AF1B /* Pods-Cinkciarz Recruit Task.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cinkciarz Recruit Task.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cinkciarz Recruit Task/Pods-Cinkciarz Recruit Task.release.xcconfig"; sourceTree = "<group>"; };
+		FD32619DFE0941CFCA12F37B /* Pods_Cinkciarz_Recruit_Task.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cinkciarz_Recruit_Task.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6A915DEF5E54E6EFAA3E3C2 /* Pods_Cinkciarz_Recruit_Task.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +57,8 @@
 			children = (
 				14C90DCE224441D100E985E8 /* Cinkciarz Recruit Task */,
 				14C90DCD224441D100E985E8 /* Products */,
+				916BB47E71590865F2807AEE /* Pods */,
+				1DD52DD7352408F5503E2D96 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +129,23 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		1DD52DD7352408F5503E2D96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD32619DFE0941CFCA12F37B /* Pods_Cinkciarz_Recruit_Task.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		916BB47E71590865F2807AEE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				037A5272FD899E5B7A2428E2 /* Pods-Cinkciarz Recruit Task.debug.xcconfig */,
+				915143A3E2FC6016C8A1AF1B /* Pods-Cinkciarz Recruit Task.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +153,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14C90DDE224441D300E985E8 /* Build configuration list for PBXNativeTarget "Cinkciarz Recruit Task" */;
 			buildPhases = (
+				39E1C285B644E80109FE98D7 /* [CP] Check Pods Manifest.lock */,
 				14C90DC8224441D100E985E8 /* Sources */,
 				14C90DC9224441D100E985E8 /* Frameworks */,
 				14C90DCA224441D100E985E8 /* Resources */,
+				2A7D80A6CA21A1DAC76E7B1E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,6 +213,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A7D80A6CA21A1DAC76E7B1E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Cinkciarz Recruit Task/Pods-Cinkciarz Recruit Task-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cinkciarz Recruit Task/Pods-Cinkciarz Recruit Task-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39E1C285B644E80109FE98D7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cinkciarz Recruit Task-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14C90DC8224441D100E985E8 /* Sources */ = {
@@ -344,6 +419,7 @@
 		};
 		14C90DDF224441D300E985E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 037A5272FD899E5B7A2428E2 /* Pods-Cinkciarz Recruit Task.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -363,6 +439,7 @@
 		};
 		14C90DE0224441D300E985E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 915143A3E2FC6016C8A1AF1B /* Pods-Cinkciarz Recruit Task.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
