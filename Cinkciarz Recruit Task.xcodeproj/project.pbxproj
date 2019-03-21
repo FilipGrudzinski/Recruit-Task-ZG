@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		14C90DD0224441D200E985E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DCF224441D100E985E8 /* AppDelegate.swift */; };
-		14C90DD2224441D200E985E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DD1224441D200E985E8 /* ViewController.swift */; };
+		14C90DD2224441D200E985E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DD1224441D200E985E8 /* LoginViewController.swift */; };
 		14C90DD5224441D200E985E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C90DD3224441D200E985E8 /* Main.storyboard */; };
 		14C90DD7224441D300E985E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C90DD6224441D300E985E8 /* Assets.xcassets */; };
 		14C90DDA224441D300E985E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C90DD8224441D300E985E8 /* LaunchScreen.storyboard */; };
+		14C90DE62244478300E985E8 /* AgencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DE52244478300E985E8 /* AgencyViewController.swift */; };
+		14C90DE82244482200E985E8 /* RocketLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DE72244482200E985E8 /* RocketLaunchViewController.swift */; };
+		14C90DEA2244485900E985E8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DE92244485900E985E8 /* DetailViewController.swift */; };
+		14C90DED224449CE00E985E8 /* MainVCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DEC224449CE00E985E8 /* MainVCTableViewCell.swift */; };
+		14C90DEF224449EF00E985E8 /* RocketLaunchVCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DEE224449EF00E985E8 /* RocketLaunchVCTableViewCell.swift */; };
+		14C90DF122444A7B00E985E8 /* SwitchRLVCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DF022444A7B00E985E8 /* SwitchRLVCTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		14C90DCC224441D100E985E8 /* Cinkciarz Recruit Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cinkciarz Recruit Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C90DCF224441D100E985E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		14C90DD1224441D200E985E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		14C90DD1224441D200E985E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		14C90DD4224441D200E985E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14C90DD6224441D300E985E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C90DD9224441D300E985E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14C90DDB224441D300E985E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14C90DE52244478300E985E8 /* AgencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyViewController.swift; sourceTree = "<group>"; };
+		14C90DE72244482200E985E8 /* RocketLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchViewController.swift; sourceTree = "<group>"; };
+		14C90DE92244485900E985E8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		14C90DEC224449CE00E985E8 /* MainVCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCTableViewCell.swift; sourceTree = "<group>"; };
+		14C90DEE224449EF00E985E8 /* RocketLaunchVCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchVCTableViewCell.swift; sourceTree = "<group>"; };
+		14C90DF022444A7B00E985E8 /* SwitchRLVCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchRLVCTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,7 @@
 		14C90DE22244430800E985E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14C90DEB2244487000E985E8 /* Cells */,
 				14C90DD3224441D200E985E8 /* Main.storyboard */,
 			);
 			path = View;
@@ -82,7 +95,10 @@
 			isa = PBXGroup;
 			children = (
 				14C90DCF224441D100E985E8 /* AppDelegate.swift */,
-				14C90DD1224441D200E985E8 /* ViewController.swift */,
+				14C90DD1224441D200E985E8 /* LoginViewController.swift */,
+				14C90DE52244478300E985E8 /* AgencyViewController.swift */,
+				14C90DE72244482200E985E8 /* RocketLaunchViewController.swift */,
+				14C90DE92244485900E985E8 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -94,6 +110,16 @@
 				14C90DD8224441D300E985E8 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14C90DEB2244487000E985E8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				14C90DEC224449CE00E985E8 /* MainVCTableViewCell.swift */,
+				14C90DEE224449EF00E985E8 /* RocketLaunchVCTableViewCell.swift */,
+				14C90DF022444A7B00E985E8 /* SwitchRLVCTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,7 +193,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14C90DD2224441D200E985E8 /* ViewController.swift in Sources */,
+				14C90DE62244478300E985E8 /* AgencyViewController.swift in Sources */,
+				14C90DD2224441D200E985E8 /* LoginViewController.swift in Sources */,
+				14C90DEA2244485900E985E8 /* DetailViewController.swift in Sources */,
+				14C90DED224449CE00E985E8 /* MainVCTableViewCell.swift in Sources */,
+				14C90DF122444A7B00E985E8 /* SwitchRLVCTableViewCell.swift in Sources */,
+				14C90DE82244482200E985E8 /* RocketLaunchViewController.swift in Sources */,
+				14C90DEF224449EF00E985E8 /* RocketLaunchVCTableViewCell.swift in Sources */,
 				14C90DD0224441D200E985E8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
