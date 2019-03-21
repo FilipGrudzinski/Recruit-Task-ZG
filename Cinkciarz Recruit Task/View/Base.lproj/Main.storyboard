@@ -102,6 +102,11 @@
                                                 <constraint firstItem="zee-GI-n9S" firstAttribute="leading" secondItem="zRh-E3-g8S" secondAttribute="leading" constant="10" id="pgT-HT-CkW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="countryCodeLabel" destination="zee-GI-n9S" id="hPL-nQ-R9p"/>
+                                            <outlet property="fullNameLabel" destination="Tg0-Da-IX9" id="pWM-83-Eke"/>
+                                            <outlet property="shortNameLabel" destination="5LS-U2-H9s" id="62t-BC-h0U"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

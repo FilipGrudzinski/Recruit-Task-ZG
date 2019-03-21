@@ -10,6 +10,10 @@ import UIKit
 
 class MainVCTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var shortNameLabel: UILabel!
+    @IBOutlet weak var countryCodeLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
