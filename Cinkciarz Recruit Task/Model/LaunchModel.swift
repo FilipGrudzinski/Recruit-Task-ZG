@@ -1,5 +1,5 @@
 //
-//  AgencyModel.swift
+//  LaunchModel.swift
 //  Cinkciarz Recruit Task
 //
 //  Created by Filip on 22/03/2019.
@@ -8,11 +8,13 @@
 
 import Foundation
 
-struct AgencyModel {
-    
-    let id: Int
+
+struct LaunchModel {
+
     let name: String
-    let countryCode: String
     let shortName: String
+    let launchDate: String
+    let status: Int?
     
 }
+

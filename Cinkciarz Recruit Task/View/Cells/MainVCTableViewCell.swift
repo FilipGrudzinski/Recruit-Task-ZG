@@ -25,8 +25,8 @@ class MainVCTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
-        nameLabel.text = nil
-        countryCodeLabel.text = nil
+        nameLabel.text = ""
+        countryCodeLabel.text = ""
     }
     
 }
