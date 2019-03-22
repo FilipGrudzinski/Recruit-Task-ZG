@@ -10,6 +10,11 @@ import UIKit
 
 class RocketLaunchVCTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var rocketNameLabel: UILabel!
+    @IBOutlet weak var shortNameLabel: UILabel!
+    @IBOutlet weak var rocketLaunchDate: UILabel!
+    @IBOutlet weak var rocketStatusLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -10,21 +10,20 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var detailNameLabel: UILabel!
+    @IBOutlet weak var detailDateLabel: UILabel!
+    @IBOutlet weak var detailStatusLabel: UILabel!
+    @IBOutlet weak var detailShortNameLabel: UILabel!
+    @IBOutlet weak var detailRocketNameLabel: UILabel!
+    @IBOutlet weak var detailImageView: UIImageView!
+    @IBOutlet weak var detailWideoButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func detailWideoButton(_ sender: Any) {
     }
-    */
-
+    
 }
