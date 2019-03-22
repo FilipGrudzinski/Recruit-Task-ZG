@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1425B6E02245033900BC81CA /* AgencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425B6DF2245033900BC81CA /* AgencyModel.swift */; };
+		1426DE8A22452A5100745C4D /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1426DE8922452A5100745C4D /* Detail.storyboard */; };
+		1426DE8C22452A8A00745C4D /* Rocket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1426DE8B22452A8A00745C4D /* Rocket.storyboard */; };
+		1426DE8E22452B0B00745C4D /* Agencies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1426DE8D22452B0B00745C4D /* Agencies.storyboard */; };
 		14C90DD0224441D200E985E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DCF224441D100E985E8 /* AppDelegate.swift */; };
 		14C90DD2224441D200E985E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DD1224441D200E985E8 /* LoginViewController.swift */; };
 		14C90DD5224441D200E985E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C90DD3224441D200E985E8 /* Main.storyboard */; };
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		037A5272FD899E5B7A2428E2 /* Pods-Cinkciarz Recruit Task.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cinkciarz Recruit Task.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cinkciarz Recruit Task/Pods-Cinkciarz Recruit Task.debug.xcconfig"; sourceTree = "<group>"; };
 		1425B6DF2245033900BC81CA /* AgencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyModel.swift; sourceTree = "<group>"; };
+		1426DE8922452A5100745C4D /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		1426DE8B22452A8A00745C4D /* Rocket.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rocket.storyboard; sourceTree = "<group>"; };
+		1426DE8D22452B0B00745C4D /* Agencies.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Agencies.storyboard; sourceTree = "<group>"; };
 		14C90DCC224441D100E985E8 /* Cinkciarz Recruit Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cinkciarz Recruit Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C90DCF224441D100E985E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14C90DD1224441D200E985E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +103,9 @@
 			children = (
 				14C90DEB2244487000E985E8 /* Cells */,
 				14C90DD3224441D200E985E8 /* Main.storyboard */,
+				1426DE8D22452B0B00745C4D /* Agencies.storyboard */,
+				1426DE8B22452A8A00745C4D /* Rocket.storyboard */,
+				1426DE8922452A5100745C4D /* Detail.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +221,9 @@
 				14C90DDA224441D300E985E8 /* LaunchScreen.storyboard in Resources */,
 				14C90DD7224441D300E985E8 /* Assets.xcassets in Resources */,
 				14C90DD5224441D200E985E8 /* Main.storyboard in Resources */,
+				1426DE8E22452B0B00745C4D /* Agencies.storyboard in Resources */,
+				1426DE8C22452A8A00745C4D /* Rocket.storyboard in Resources */,
+				1426DE8A22452A5100745C4D /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
