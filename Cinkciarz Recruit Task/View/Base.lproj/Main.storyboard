@@ -54,53 +54,38 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="90" id="stj-5c-OIe" customClass="MainVCTableViewCell" customModule="Cinkciarz_Recruit_Task" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="100" id="stj-5c-OIe" customClass="MainVCTableViewCell" customModule="Cinkciarz_Recruit_Task" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="stj-5c-OIe" id="zRh-E3-g8S">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="National Aeronautics and Space Administration" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-Da-IX9">
-                                                    <rect key="frame" x="10" y="0.0" width="230" height="41"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="41" id="FYJ-E0-f1k"/>
-                                                        <constraint firstAttribute="width" constant="230" id="LpD-Fs-50A"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="10" y="10" width="300" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(NASA)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LS-U2-H9s">
-                                                    <rect key="frame" x="242" y="0.0" width="68" height="41"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zee-GI-n9S">
-                                                    <rect key="frame" x="10" y="59" width="300" height="20.5"/>
+                                                    <rect key="frame" x="10" y="69" width="300" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="5LS-U2-H9s" secondAttribute="trailing" constant="10" id="58w-Ez-98t"/>
-                                                <constraint firstItem="Tg0-Da-IX9" firstAttribute="leading" secondItem="zRh-E3-g8S" secondAttribute="leading" constant="10" id="F82-vv-aRe"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tg0-Da-IX9" secondAttribute="trailing" constant="10" id="H4G-t6-iya"/>
                                                 <constraint firstAttribute="bottom" secondItem="zee-GI-n9S" secondAttribute="bottom" constant="10" id="JjX-XL-juf"/>
-                                                <constraint firstItem="5LS-U2-H9s" firstAttribute="leading" secondItem="Tg0-Da-IX9" secondAttribute="trailing" constant="2" id="OWO-CA-Yeq"/>
-                                                <constraint firstItem="zee-GI-n9S" firstAttribute="top" secondItem="Tg0-Da-IX9" secondAttribute="bottom" constant="18" id="OrW-oJ-WpR"/>
                                                 <constraint firstAttribute="trailing" secondItem="zee-GI-n9S" secondAttribute="trailing" constant="10" id="QeC-IS-pPr"/>
-                                                <constraint firstItem="Tg0-Da-IX9" firstAttribute="top" secondItem="zRh-E3-g8S" secondAttribute="top" id="W6H-BH-J6o"/>
                                                 <constraint firstItem="zee-GI-n9S" firstAttribute="leading" secondItem="zRh-E3-g8S" secondAttribute="leading" constant="10" id="aWJ-RM-XZT"/>
-                                                <constraint firstItem="5LS-U2-H9s" firstAttribute="top" secondItem="zRh-E3-g8S" secondAttribute="top" id="lXV-fS-L5g"/>
-                                                <constraint firstItem="5LS-U2-H9s" firstAttribute="height" secondItem="Tg0-Da-IX9" secondAttribute="height" id="wHy-GS-DGl"/>
+                                                <constraint firstItem="Tg0-Da-IX9" firstAttribute="leading" secondItem="zRh-E3-g8S" secondAttribute="leading" constant="10" id="jL5-Ay-mIw"/>
+                                                <constraint firstItem="Tg0-Da-IX9" firstAttribute="top" secondItem="zRh-E3-g8S" secondAttribute="top" constant="10" id="oO9-Iu-abi"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="countryCodeLabel" destination="zee-GI-n9S" id="hPL-nQ-R9p"/>
-                                            <outlet property="fullNameLabel" destination="Tg0-Da-IX9" id="pWM-83-Eke"/>
-                                            <outlet property="shortNameLabel" destination="5LS-U2-H9s" id="62t-BC-h0U"/>
+                                            <outlet property="nameLabel" destination="Tg0-Da-IX9" id="rVz-cO-hYt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -120,6 +105,7 @@
                         <viewLayoutGuide key="safeArea" id="mK8-kt-Cqt"/>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="Ouu-6H-POc" id="6U3-uB-M45"/>
                         <segue destination="uFL-sM-KaJ" kind="show" identifier="goToRocketLaunchVC" id="vfi-0b-a5D"/>
                     </connections>
                 </viewController>

@@ -10,8 +10,7 @@ import UIKit
 
 class MainVCTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var fullNameLabel: UILabel!
-    @IBOutlet weak var shortNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var countryCodeLabel: UILabel!
     
     override func awakeFromNib() {
@@ -25,4 +24,9 @@ class MainVCTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func prepareForReuse() {
+        nameLabel.text = nil
+        countryCodeLabel.text = nil
+    }
+    
 }
