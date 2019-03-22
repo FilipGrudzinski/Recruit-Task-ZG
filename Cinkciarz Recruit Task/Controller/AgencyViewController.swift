@@ -15,7 +15,10 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
+    
     private var agencyArray = [AgencyModel]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,24 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "goToRocketLaunchVC", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToRocketLaunchVC" {
+            
+            let rocketVC = segue.destination as! RocketLaunchViewController
+            
+            rocketVC.agencyID = self.agencyArray[self.tableView!.indexPathForSelectedRow!.row].id
+                
+        }
+    }
+    
     
     
     private func loadAgency() {
@@ -51,24 +72,23 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let url = "https://launchlibrary.net/1.4/lsp"
         
-            Alamofire.request(url, method: .get ).validate().responseJSON { response in
-                
-                let responseJSON: JSON = JSON(response.result.value!)
-                let agenciesJSON = responseJSON["agencies"]
-                
-                agenciesJSON.array?.forEach({ (agencies) in
-                    let agency = AgencyModel(id: agencies["id"].intValue, name: agencies["name"].stringValue, countryCode: agencies["countryCode"].stringValue, shortName: agencies["abbrev"].stringValue)
-                    self.agencyArray.append(agency)
-                    
-                })
-                
-                self.agencyArray = self.agencyArray.sorted { $0.name < $1.name }
-                SVProgressHUD.dismiss()
-                
-                self.tableView.reloadData()
-                
-            }
+        Alamofire.request(url, method: .get ).validate().responseJSON { response in
             
+            let responseJSON: JSON = JSON(response.result.value!)
+            let agenciesJSON = responseJSON["agencies"]
+            
+            agenciesJSON.array?.forEach({ (agencies) in
+                let agency = AgencyModel(id: agencies["id"].intValue, name: agencies["name"].stringValue, countryCode: agencies["countryCode"].stringValue, shortName: agencies["abbrev"].stringValue)
+                self.agencyArray.append(agency)
+                
+            })
+            
+            self.agencyArray = self.agencyArray.sorted { $0.name < $1.name }
+            SVProgressHUD.dismiss()
+            
+            self.tableView.reloadData()
+            
+        }
         
     }
     

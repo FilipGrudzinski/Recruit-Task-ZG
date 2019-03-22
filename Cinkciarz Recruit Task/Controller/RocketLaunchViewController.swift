@@ -10,7 +10,7 @@ import UIKit
 
 class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
-    
+    var agencyID:Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()

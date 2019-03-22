@@ -116,7 +116,7 @@
         <!--Rocket Launch-->
         <scene sceneID="ktQ-hw-XtF">
             <objects>
-                <viewController storyboardIdentifier="Rocket Launch View" title="Rocket Launch" id="uFL-sM-KaJ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Rocket Launch View" title="Rocket Launch" id="uFL-sM-KaJ" customClass="RocketLaunchViewController" customModule="Cinkciarz_Recruit_Task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3vB-b7-nUT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
