@@ -11,10 +11,9 @@ import Foundation
 
 struct LaunchModel {
 
-    let name: String
-    let shortName: String
+    let rocketName: String
     let launchDate: String
-    let status: Int?
+    let status: String
     let id: Int?
     
 }

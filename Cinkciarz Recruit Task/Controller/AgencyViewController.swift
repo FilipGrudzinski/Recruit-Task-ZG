@@ -67,7 +67,7 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let rocketVC = segue.destination as! RocketLaunchViewController
             
-            rocketVC.shortAgencyName = self.agencyArray[self.tableView!.indexPathForSelectedRow!.row].shortName
+            rocketVC.rocketAgencyArray = [self.agencyArray[self.tableView!.indexPathForSelectedRow!.row]]
             
         }
     }
@@ -77,13 +77,9 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         SVProgressHUD.show(withStatus: "In Progress")
         
-        Alamofire.request(agencyUrl, method: .get ).validate().responseJSON { response in
+        Alamofire.request(agencyUrl, method: .get ).validate(statusCode: 200..<300).responseJSON { response in
             
-            if response.value == nil {
-                
-                print("No item")
-                
-            } else {
+            if response.result.value != nil {
                 
                 let responseJSON: JSON = JSON(response.result.value!)
                 //print(responseJSON)

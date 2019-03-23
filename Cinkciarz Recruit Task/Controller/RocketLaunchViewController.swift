@@ -19,14 +19,18 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var rocketTableView: UITableView!
     
     
-    var shortAgencyName:String = ""
+    var rocketAgencyArray = [AgencyModel]()
     private let launchUrl = "https://launchlibrary.net/1.4/launch"
     private var launchArray = [LaunchModel]()
-    
+    private var param = [String : Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadRocket()
+        
+        param = ["agency" : "\(rocketAgencyArray[0].shortName)", "limit" : 20]
+        print(param)
+        loadRocket(param)
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
     }
     
@@ -38,7 +42,17 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return launchArray.count
+        
+        if launchArray.count == 0 {
+            
+            return 1
+            
+        } else {
+            
+            return launchArray.count
+            
+        }
+        
     }
     
     
@@ -47,28 +61,21 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RocketLaunchVCTableViewCell
         
         cell.backgroundColor = indexPath.item % 2 == 0 ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.9448125, green: 0.9448125, blue: 0.9448125, alpha: 1)
-        cell.rocketNameLabel?.text = launchArray[indexPath.row].name
-        cell.shortNameLabel.text = launchArray[indexPath.row].shortName
-        cell.rocketLaunchDate.text = launchArray[indexPath.row].launchDate
         
-        switch launchArray[indexPath.row].status {
-        case 1:
-            cell.rocketStatusLabel.text = "Go"
-        case 2:
-            cell.rocketStatusLabel.text = "TBD"
-        case 3:
-            cell.rocketStatusLabel.text = "Success"
-        case 4:
-            cell.rocketStatusLabel.text = "Failure"
-        case 5:
-            cell.rocketStatusLabel.text = "Hold"
-        case 6:
-            cell.rocketStatusLabel.text = "In Flight"
-        case 7:
-            cell.rocketStatusLabel.text = "Partial Failure"
-        default:
-            cell.rocketStatusLabel.text = ""
+        if launchArray.count == 0 {
+          
+            cell.rocketNameLabel.text = "No Launch in this Agency"
+            
+        } else {
+            
+            cell.rocketNameLabel.text = launchArray[indexPath.row].rocketName
+            cell.shortNameLabel.text = rocketAgencyArray[0].shortName
+            cell.rocketLaunchDate.text = launchArray[indexPath.row].launchDate
+            cell.rocketStatusLabel.text = launchArray[indexPath.row].status
+            
+            
         }
+        
         
         return cell
     }
@@ -76,8 +83,12 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "goToDetailVC", sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
+        if launchArray.count != 0 {
+            
+            performSegue(withIdentifier: "goToDetailVC", sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+        }
         
     }
     
@@ -87,47 +98,68 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         if segue.identifier == "goToDetailVC" {
             
             let detailVC = segue.destination as! DetailViewController
-            detailVC.detailParam = ["agency" : "\(shortAgencyName)", "id" : "\(String(describing: self.launchArray[self.rocketTableView!.indexPathForSelectedRow!.row].id!))"]
+            
+            detailVC.detailAgencyArray = rocketAgencyArray
+            detailVC.detailLaunchArray = [launchArray[self.rocketTableView.indexPathForSelectedRow!.row]]
+            
         }
     }
     
     
-    private func loadRocket() {
+    private func loadRocket(_ parameters:[String : Any]) {
         
         SVProgressHUD.show(withStatus: "In Progress")
         
-        let params: [String : Any] = ["agency" : "\(shortAgencyName)", "limit" : 20]
-        
-        
-            Alamofire.request(self.launchUrl, method: .get, parameters: params).validate().responseJSON { response in
+        Alamofire.request(self.launchUrl, method: .get, parameters: parameters).validate().responseJSON { response in
+            
+            if response.result.value != nil {
                 
-                if response.result.value == nil {
+                let responseJSON: JSON = JSON(response.result.value!)
+                let rocketLaunchJSON = responseJSON["launches"]
+                //print(rocketLaunchJSON)
+                rocketLaunchJSON.array?.forEach({ (launches) in
                     
-                    let launch = LaunchModel(name: "No Launch in this Agency", shortName: "", launchDate: "", status: nil, id: nil)
+                    let stringStatus = self.getStatus(launches["status"].intValue)
+                    
+                    let launch = LaunchModel(rocketName: launches["name"].stringValue, launchDate: launches["net"].stringValue, status: stringStatus, id: launches["id"].intValue)
                     self.launchArray.append(launch)
                     
-                } else {
-                    
-                    let responseJSON: JSON = JSON(response.result.value!)
-                    //print(responseJSON)
-                    let rocketLaunchJSON = responseJSON["launches"]
-                    print(rocketLaunchJSON)
-                    
-                    rocketLaunchJSON.array?.forEach({ (launches) in
-                        let launch = LaunchModel(name: launches["name"].stringValue, shortName: "\(self.shortAgencyName)", launchDate: launches["net"].stringValue, status: launches["status"].intValue, id: launches["id"].intValue)
-                        self.launchArray.append(launch)
-                        
-                    })
-                    
-                }
-                
-                //self.agencyArray = self.agencyArray.sorted { $0.name < $1.name }
-                SVProgressHUD.dismiss()
-                //print(self.launchArray)
-                self.rocketTableView.reloadData()
+                })
                 
             }
+            
+            //self.agencyArray = self.agencyArray.sorted { $0.name < $1.name }
+            SVProgressHUD.dismiss()
+            
+            self.rocketTableView.reloadData()
+            
         }
+        
+        
+    }
     
+    
+    private func getStatus(_ id: Int) -> String {
+        
+        switch id {
+        case 1:
+            return "Go";
+        case 2:
+            return "TBD";
+        case 3:
+            return "Success";
+        case 4:
+            return "Failure";
+        case 5:
+            return "Hold";
+        case 6:
+            return "In Flight";
+        case 7:
+            return "Partial Failure";
+        default:
+            return ""
+        }
+        
+    }
     
 }

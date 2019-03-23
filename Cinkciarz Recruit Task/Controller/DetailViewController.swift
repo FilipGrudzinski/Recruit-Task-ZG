@@ -9,12 +9,10 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SVProgressHUD
-
 
 
 class DetailViewController: UIViewController {
-
+    
     
     @IBOutlet weak var detailNameLabel: UILabel!
     @IBOutlet weak var detailDateLabel: UILabel!
@@ -26,63 +24,41 @@ class DetailViewController: UIViewController {
     
     
     private let launchUrl = "https://launchlibrary.net/1.4/launch"
-    var detailParam = [String : Any]()
+    var detailAgencyArray = [AgencyModel]()
+    var detailLaunchArray = [LaunchModel]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDetails()
+        loadData()
+        print(detailLaunchArray[0].id)
+        let param = ["rocket" : "\(detailLaunchArray[0].id!)"]
+        Alamofire.request("https://launchlibrary.net/1.4/rocket", method: .get, parameters: param).validate().responseJSON { response in
+            
+            
+            let responseJSON: JSON = JSON(response.result.value!)
+            let rocketLaunchJSON = responseJSON["launches"]
+            print(rocketLaunchJSON)
+            
+            
+        }
+        
     }
     
     @IBAction func detailWideoButton(_ sender: Any) {
     }
     
-    
-    
-    private func loadDetails() {
+    private func loadData() {
         
-        SVProgressHUD.show(withStatus: "In Progress")
-        
-        Alamofire.request(launchUrl, method: .get, parameters: detailParam).validate().responseJSON { response in
-            
-            if response.result.value == nil {
-                
-                self.detailNameLabel.text = "No details"
-                
-            } else {
-                
-                let responseJSON: JSON = JSON(response.result.value!)
-                print(responseJSON)
-                
-                self.detailNameLabel.text = responseJSON["launches"][0]["status"].stringValue
-                self.detailDateLabel.text = responseJSON["launches"][0]["net"].stringValue
-                self.detailStatusLabel.text = responseJSON["launches"][0]["status"].stringValue
-                self.detailShortNameLabel.text = responseJSON["launches"][0]["net"].stringValue
-                self.detailRocketNameLabel.text = responseJSON["launches"][0]["net"].stringValue
-                //self.detailImageView.text = ""
-                //self.detailWideoButton.text = ""
-                print(responseJSON["launches"][0]["status"].stringValue)
-                print(responseJSON["launches"][0]["net"].stringValue)
-                print(responseJSON["launches"][0]["status"].stringValue)
-                print(responseJSON["launches"][0]["net"].stringValue)
-              print(responseJSON["launches"][0]["net"].stringValue)
-                
-                
-//                let rocketLaunchJSON = responseJSON["launches"]
-//                print(responseJSON)
-                
-//                rocketLaunchJSON.array?.forEach({ (launches) in
-//                    let launch = LaunchModel(name: launches["name"].stringValue, shortName: "\(self.shortAgencyName)", launchDate: launches["net"].stringValue, status: launches["status"].intValue)
-//                    self.launchArray.append(launch)
-//                    
-//                })
-                
-            }
-            
-            SVProgressHUD.dismiss()
-            
-        }
+        self.detailNameLabel.text = detailAgencyArray[0].name
+        self.detailDateLabel.text = detailLaunchArray[0].launchDate
+        self.detailStatusLabel.text = detailLaunchArray[0].status
+        self.detailShortNameLabel.text = detailAgencyArray[0].shortName
+        self.detailRocketNameLabel.text = detailLaunchArray[0].rocketName
+        //self.detailImageView.text = ""
+        //self.detailWideoButton.text = ""
         
     }
+    
     
 }
