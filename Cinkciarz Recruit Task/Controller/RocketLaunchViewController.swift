@@ -18,10 +18,10 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     
     @IBOutlet weak var rocketTableView: UITableView!
     
-    private let launchUrl = "https://launchlibrary.net/1.4/launch"
     
     var shortAgencyName:String = ""
-    var launchArray = [LaunchModel]()
+    private let launchUrl = "https://launchlibrary.net/1.4/launch"
+    private var launchArray = [LaunchModel]()
     
     
     override func viewDidLoad() {
@@ -74,41 +74,60 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "goToDetailVC", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToDetailVC" {
+            
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.detailParam = ["agency" : "\(shortAgencyName)", "id" : "\(String(describing: self.launchArray[self.rocketTableView!.indexPathForSelectedRow!.row].id!))"]
+        }
+    }
+    
+    
     private func loadRocket() {
         
         SVProgressHUD.show(withStatus: "In Progress")
         
         let params: [String : Any] = ["agency" : "\(shortAgencyName)", "limit" : 20]
         
-        Alamofire.request(launchUrl, method: .get, parameters: params).validate().responseJSON { response in
-            
-            if response.result.value == nil {
+        
+            Alamofire.request(self.launchUrl, method: .get, parameters: params).validate().responseJSON { response in
                 
-                let launch = LaunchModel(name: "No Launch in this Agency", shortName: "", launchDate: "", status: nil)
-                self.launchArray.append(launch)
-                
-            } else {
-                
-                let responseJSON: JSON = JSON(response.result.value!)
-                //print(responseJSON)
-                let rocketLaunchJSON = responseJSON["launches"]
-                
-                rocketLaunchJSON.array?.forEach({ (launches) in
-                    let launch = LaunchModel(name: launches["name"].stringValue, shortName: "\(self.shortAgencyName)", launchDate: launches["net"].stringValue, status: launches["status"].intValue)
+                if response.result.value == nil {
+                    
+                    let launch = LaunchModel(name: "No Launch in this Agency", shortName: "", launchDate: "", status: nil, id: nil)
                     self.launchArray.append(launch)
                     
-                })
+                } else {
+                    
+                    let responseJSON: JSON = JSON(response.result.value!)
+                    //print(responseJSON)
+                    let rocketLaunchJSON = responseJSON["launches"]
+                    print(rocketLaunchJSON)
+                    
+                    rocketLaunchJSON.array?.forEach({ (launches) in
+                        let launch = LaunchModel(name: launches["name"].stringValue, shortName: "\(self.shortAgencyName)", launchDate: launches["net"].stringValue, status: launches["status"].intValue, id: launches["id"].intValue)
+                        self.launchArray.append(launch)
+                        
+                    })
+                    
+                }
+                
+                //self.agencyArray = self.agencyArray.sorted { $0.name < $1.name }
+                SVProgressHUD.dismiss()
+                //print(self.launchArray)
+                self.rocketTableView.reloadData()
                 
             }
-            
-            //self.agencyArray = self.agencyArray.sorted { $0.name < $1.name }
-            SVProgressHUD.dismiss()
-            //print(self.launchArray)
-            self.rocketTableView.reloadData()
-            
         }
-        
-    }
     
     
 }

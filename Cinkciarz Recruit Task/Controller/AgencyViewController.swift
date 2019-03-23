@@ -18,6 +18,7 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
+    
     private let agencyUrl = "https://launchlibrary.net/1.4/lsp?limit=100"
     private var agencyArray = [AgencyModel]()
 

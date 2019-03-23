@@ -15,6 +15,7 @@ struct LaunchModel {
     let shortName: String
     let launchDate: String
     let status: Int?
+    let id: Int?
     
 }
 
