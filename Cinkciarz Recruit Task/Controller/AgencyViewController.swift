@@ -31,11 +31,18 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         refreshControl.addTarget(self, action: #selector(refresData(_:)), for: .valueChanged)
         
+        tableView.rowHeight = UITableView.automaticDimension
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return UITableView.automaticDimension
     }
     
     
@@ -128,6 +135,7 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         agenciesJSON.array?.forEach({ (agencies) in
             let agency = AgencyModel(agencyName: agencies["name"].stringValue, agencyCountryCode: agencies["countryCode"].stringValue, agencyShortName: agencies["abbrev"].stringValue)
+            
             self.agencyArray.append(agency)
             
         })

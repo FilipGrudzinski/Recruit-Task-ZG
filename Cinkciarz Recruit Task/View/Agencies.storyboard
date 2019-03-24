@@ -29,26 +29,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-Da-IX9">
-                                                    <rect key="frame" x="10" y="5" width="355" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zee-GI-n9S">
-                                                    <rect key="frame" x="10" y="74.5" width="355" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="myj-bw-Q9e">
+                                                    <rect key="frame" x="4" y="4" width="367" height="72"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-Da-IX9">
+                                                            <rect key="frame" x="0.0" y="0.0" width="367" height="0.0"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zee-GI-n9S">
+                                                            <rect key="frame" x="0.0" y="22" width="367" height="50"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Tg0-Da-IX9" secondAttribute="trailing" constant="10" id="H4G-t6-iya"/>
-                                                <constraint firstAttribute="bottom" secondItem="zee-GI-n9S" secondAttribute="bottom" constant="5" id="JjX-XL-juf"/>
-                                                <constraint firstAttribute="trailing" secondItem="zee-GI-n9S" secondAttribute="trailing" constant="10" id="QeC-IS-pPr"/>
-                                                <constraint firstItem="zee-GI-n9S" firstAttribute="leading" secondItem="zRh-E3-g8S" secondAttribute="leading" constant="10" id="aWJ-RM-XZT"/>
-                                                <constraint firstItem="Tg0-Da-IX9" firstAttribute="leading" secondItem="zRh-E3-g8S" secondAttribute="leading" constant="10" id="jL5-Ay-mIw"/>
-                                                <constraint firstItem="Tg0-Da-IX9" firstAttribute="top" secondItem="zRh-E3-g8S" secondAttribute="top" constant="5" id="oO9-Iu-abi"/>
+                                                <constraint firstAttribute="bottom" secondItem="myj-bw-Q9e" secondAttribute="bottom" constant="4" id="2UX-UV-MIe"/>
+                                                <constraint firstItem="myj-bw-Q9e" firstAttribute="leading" secondItem="zRh-E3-g8S" secondAttribute="leading" constant="4" id="2bh-bi-c9Q"/>
+                                                <constraint firstAttribute="trailing" secondItem="myj-bw-Q9e" secondAttribute="trailing" constant="4" id="kGl-hN-pIR"/>
+                                                <constraint firstItem="myj-bw-Q9e" firstAttribute="top" secondItem="zRh-E3-g8S" secondAttribute="top" constant="4" id="nwQ-fY-Cbg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

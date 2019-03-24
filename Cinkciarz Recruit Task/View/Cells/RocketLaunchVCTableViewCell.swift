@@ -18,7 +18,7 @@ class RocketLaunchVCTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        rocketNameLabel.adjustsFontSizeToFitWidth = true
+        //rocketNameLabel.adjustsFontSizeToFitWidth = true
         
         rocketNameLabel.text = ""
         shortNameLabel.text = ""

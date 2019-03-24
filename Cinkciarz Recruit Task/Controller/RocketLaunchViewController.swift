@@ -25,31 +25,37 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     private var launchRocketArray = [LaunchRocketModel]()
     private var param = [String : Any]()
     private var noItemLabel = ""
-    
+    private var todaysDate = ""
+    private var totalLaunches = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
+        
         refreshControl.addTarget(self, action: #selector(refresData(_:)), for: .valueChanged)
         
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let todaysDate = dateFormatter.string(from: date)
-        
-        param = ["lsp" : "\(rocketAgencyArray[0].agencyShortName)","enddate":"\(todaysDate)", "limit" : 10]
+        todaysDate = dateFormatter.string(from: date)
+       
+        param = ["lsp" : "\(rocketAgencyArray[0].agencyShortName)","enddate":"\(todaysDate)", "limit" : 20, "sort" : "desc"]
         loadRocket(param)
         SVProgressHUD.show(withStatus: "In Progress")
-        
+   
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return UITableView.automaticDimension
     }
     
     
@@ -87,9 +93,15 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
             
         }
         
+        paggingLoadMoreLaunches(indexPath.row)
+        
+        
+        
         return cell
+        
     }
     
+   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -124,7 +136,11 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
             if response.result.value != nil {
 
                 let responseJSON: JSON = JSON(response.result.value!)
-                
+                //print(responseJSON)
+                self.totalLaunches = responseJSON["total"].intValue
+             
+                //print(self.totalLaunches)
+                    
                 self.savingJson(responseJSON)
                 
             } else {
@@ -144,7 +160,7 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         
         noItemLabel = ""
         let rocketLaunchJSON = json["launches"]
-        //print(responseJSON)
+        //print(rocketLaunchJSON)
         rocketLaunchJSON.array?.forEach({ (launches) in
             
             let stringStatus = self.getStatus(launches["status"].intValue)
@@ -155,10 +171,56 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
             
         })
         
-        self.launchRocketArray = self.launchRocketArray.reversed()
+        print(self.launchRocketArray.count)
         SVProgressHUD.dismiss()
         self.refreshControl.endRefreshing()
         self.rocketTableView.reloadData()
+        
+    }
+ 
+   
+    @objc private func refresData(_ sender: Any) {
+        
+        self.noItemLabel = ""
+        self.launchRocketArray.removeAll()
+        self.rocketTableView.reloadData()
+        
+        SVProgressHUD.show(withStatus: "In Progress")
+        let when = DispatchTime.now() + 0.1
+        DispatchQueue.main.asyncAfter(deadline: when){
+            
+            self.loadRocket(self.param)
+            
+        }
+        
+    }
+    
+    
+    private func paggingLoadMoreLaunches(_ lastIndexFromTableWiew: Int) {
+        
+        if lastIndexFromTableWiew == launchRocketArray.count - 1 {
+            
+            if totalLaunches > launchRocketArray.count {
+                
+                let offset = launchRocketArray.count
+                let params: [String : Any] = ["lsp" : "\(rocketAgencyArray[0].agencyShortName)","enddate":"\(self.todaysDate)", "limit" : 20, "offset": offset, "sort" : "desc"]
+                //print("ilosc w array\(offset)")
+                self.loadRocket(params)
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    private func setupTableView() {
+        
+        if #available(iOS 10.0, *) {
+            rocketTableView.refreshControl = refreshControl
+        } else {
+            rocketTableView.addSubview(refreshControl)
+        }
         
     }
     
@@ -182,34 +244,6 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
             return "Partial Failure";
         default:
             return ""
-        }
-        
-    }
-   
-    @objc private func refresData(_ sender: Any) {
-        
-        self.noItemLabel = ""
-        self.launchRocketArray.removeAll()
-        self.rocketTableView.reloadData()
-        
-        SVProgressHUD.show(withStatus: "In Progress")
-        let when = DispatchTime.now() + 0.1
-        DispatchQueue.main.asyncAfter(deadline: when){
-            
-            self.loadRocket(self.param)
-            
-        }
-        
-    }
-    
-    
-    
-    private func setupTableView() {
-        
-        if #available(iOS 10.0, *) {
-            rocketTableView.refreshControl = refreshControl
-        } else {
-            rocketTableView.addSubview(refreshControl)
         }
         
     }

@@ -30,12 +30,9 @@ class DetailViewController: UIViewController {
 
         setLabelData()
         //setImage()
-        
+
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        detailAgencyArray.removeAll()
-    }
     
     @IBAction func detailWideoButton(_ sender: Any) {
         
@@ -50,11 +47,12 @@ class DetailViewController: UIViewController {
         
         let rocketName = detailLaunchArray[0].rocketName
         
-        self.detailNameLabel.text = detailAgencyArray[0].agencyName
-        self.detailDateLabel.text = detailLaunchArray[0].launchDate
-        self.detailStatusLabel.text = detailLaunchArray[0].launchstatus
-        self.detailShortNameLabel.text = detailAgencyArray[0].agencyShortName
-        self.detailRocketNameLabel.text = rocketName.isEmpty ? "Nieznana" : "\(rocketName)"
+        detailNameLabel.text = detailAgencyArray[0].agencyName
+        detailDateLabel.text = detailLaunchArray[0].launchDate
+        detailStatusLabel.text = detailLaunchArray[0].launchstatus
+        detailShortNameLabel.text = detailAgencyArray[0].agencyShortName
+        detailRocketNameLabel.text = rocketName.isEmpty ? "Nieznana" : "\(rocketName)"
+        //detailImageView.kf.setImage(with: URL(string: detailLaunchArray[0].rocketImageUrl))
         
         if detailLaunchArray[0].rocketWideoUrl.isEmpty {
             
@@ -77,7 +75,7 @@ class DetailViewController: UIViewController {
             
         } else {
             
-            detailImageView.kf.setImage(with: URL(string: detailLaunchArray[0].rocketImageUrl))
+            
         }
         
         
