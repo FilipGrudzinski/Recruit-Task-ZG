@@ -10,5 +10,6 @@ target 'Cinkciarz Recruit Task' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
+pod 'Kingfisher'
 
 end

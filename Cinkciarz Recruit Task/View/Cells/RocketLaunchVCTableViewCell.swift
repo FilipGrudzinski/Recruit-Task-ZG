@@ -19,14 +19,19 @@ class RocketLaunchVCTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         rocketNameLabel.adjustsFontSizeToFitWidth = true
-
+        
+        rocketNameLabel.text = ""
+        shortNameLabel.text = ""
+        rocketLaunchDate.text = ""
+        rocketStatusLabel.text = ""
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
-
+    
     override func prepareForReuse() {
         rocketNameLabel.text = ""
         shortNameLabel.text = ""

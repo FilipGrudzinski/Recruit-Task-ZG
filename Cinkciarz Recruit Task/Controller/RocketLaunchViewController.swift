@@ -20,12 +20,19 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     
     
     var rocketAgencyArray = [AgencyModel]()
+    private let refreshControl = UIRefreshControl()
     private let launchUrl = "https://launchlibrary.net/1.4/launch/"
     private var launchRocketArray = [LaunchRocketModel]()
     private var param = [String : Any]()
+    private var noItemLabel = ""
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTableView()
+        refreshControl.addTarget(self, action: #selector(refresData(_:)), for: .valueChanged)
         
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -34,8 +41,10 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         
         param = ["lsp" : "\(rocketAgencyArray[0].agencyShortName)","enddate":"\(todaysDate)", "limit" : 10]
         loadRocket(param)
+        SVProgressHUD.show(withStatus: "In Progress")
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        
     }
     
     
@@ -47,11 +56,11 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if launchRocketArray.count == 0 {
-            
+
             return 1
-            
+
         } else {
-            
+        
             return launchRocketArray.count
             
         }
@@ -67,7 +76,7 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         
         if launchRocketArray.count == 0 {
           
-            cell.rocketNameLabel.text = "No Launch in this Agency"
+            cell.rocketNameLabel.text = noItemLabel
             
         } else {
             
@@ -110,33 +119,46 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     
     private func loadRocket(_ parameters:[String : Any]) {
         
-        SVProgressHUD.show(withStatus: "In Progress")
-        
         Alamofire.request(self.launchUrl, method: .get, parameters: parameters).validate().responseJSON { response in
             
             if response.result.value != nil {
 
                 let responseJSON: JSON = JSON(response.result.value!)
-                let rocketLaunchJSON = responseJSON["launches"]
-                //print(responseJSON)
-                rocketLaunchJSON.array?.forEach({ (launches) in
-                    
-                    let stringStatus = self.getStatus(launches["status"].intValue)
-                    
-                    let launch = LaunchRocketModel(launchName: launches["name"].stringValue, launchDate: launches["net"].stringValue, launchstatus: stringStatus,  rocketName: launches["rocket"]["name"].stringValue, rocketImageUrl: launches["rocket"]["imageURL"].stringValue, rocketWideoUrl: launches["vidURLs"][0].stringValue)
-                    
-                    self.launchRocketArray.append(launch)
-                    
-                })
                 
+                self.savingJson(responseJSON)
+                
+            } else {
+                
+                SVProgressHUD.dismiss()
+                self.refreshControl.endRefreshing()
+                self.noItemLabel = "No Launch in this Agency"
+                self.rocketTableView.reloadData()
             }
-            
-            self.launchRocketArray = self.launchRocketArray.reversed()
-            SVProgressHUD.dismiss()
-            self.rocketTableView.reloadData()
-            
+           
         }
         
+    }
+    
+    
+    private func savingJson(_ json: JSON) {
+        
+        noItemLabel = ""
+        let rocketLaunchJSON = json["launches"]
+        //print(responseJSON)
+        rocketLaunchJSON.array?.forEach({ (launches) in
+            
+            let stringStatus = self.getStatus(launches["status"].intValue)
+            
+            let launch = LaunchRocketModel(launchName: launches["name"].stringValue, launchDate: launches["net"].stringValue, launchstatus: stringStatus,  rocketName: launches["rocket"]["name"].stringValue, rocketImageUrl: launches["rocket"]["imageURL"].stringValue, rocketWideoUrl: launches["vidURLs"][0].stringValue)
+            
+            self.launchRocketArray.append(launch)
+            
+        })
+        
+        self.launchRocketArray = self.launchRocketArray.reversed()
+        SVProgressHUD.dismiss()
+        self.refreshControl.endRefreshing()
+        self.rocketTableView.reloadData()
         
     }
     
@@ -164,5 +186,32 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         
     }
    
+    @objc private func refresData(_ sender: Any) {
+        
+        self.noItemLabel = ""
+        self.launchRocketArray.removeAll()
+        self.rocketTableView.reloadData()
+        
+        SVProgressHUD.show(withStatus: "In Progress")
+        let when = DispatchTime.now() + 0.1
+        DispatchQueue.main.asyncAfter(deadline: when){
+            
+            self.loadRocket(self.param)
+            
+        }
+        
+    }
+    
+    
+    
+    private func setupTableView() {
+        
+        if #available(iOS 10.0, *) {
+            rocketTableView.refreshControl = refreshControl
+        } else {
+            rocketTableView.addSubview(refreshControl)
+        }
+        
+    }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailViewController: UIViewController {
     
@@ -20,18 +21,20 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailWideoButton: UIButton!
     
     
-    private let detialRockethUrl = "https://launchlibrary.net/1.4/rocket/"
     var detailAgencyArray = [AgencyModel]()
     var detailLaunchArray = [LaunchRocketModel]()
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //detailWideoButton.isHidden = true
+
         setLabelData()
-        print(detailLaunchArray[0].rocketWideoUrl)
+        //setImage()
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        detailAgencyArray.removeAll()
     }
     
     @IBAction func detailWideoButton(_ sender: Any) {
@@ -59,16 +62,22 @@ class DetailViewController: UIViewController {
             
         } else {
             
-             detailWideoButton.isHidden = false
+            detailWideoButton.isHidden = false
             
         }
         
+    }
+    
+    
+    private func setImage() {
+        
         if detailLaunchArray[0].rocketImageUrl.isEmpty {
             
+            detailImageView.image = nil
             
         } else {
             
-            
+            detailImageView.kf.setImage(with: URL(string: detailLaunchArray[0].rocketImageUrl))
         }
         
         
