@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
-
 
 class DetailViewController: UIViewController {
     
@@ -23,42 +20,61 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailWideoButton: UIButton!
     
     
-    private let launchUrl = "https://launchlibrary.net/1.4/launch"
+    private let detialRockethUrl = "https://launchlibrary.net/1.4/rocket/"
     var detailAgencyArray = [AgencyModel]()
-    var detailLaunchArray = [LaunchModel]()
-    
+    var detailLaunchArray = [LaunchRocketModel]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
-        print(detailLaunchArray[0].id)
-        let param = ["rocket" : "\(detailLaunchArray[0].id!)"]
-        Alamofire.request("https://launchlibrary.net/1.4/rocket", method: .get, parameters: param).validate().responseJSON { response in
-            
-            
-            let responseJSON: JSON = JSON(response.result.value!)
-            let rocketLaunchJSON = responseJSON["launches"]
-            print(rocketLaunchJSON)
-            
-            
-        }
+        
+        //detailWideoButton.isHidden = true
+        setLabelData()
+        print(detailLaunchArray[0].rocketWideoUrl)
         
     }
     
     @IBAction func detailWideoButton(_ sender: Any) {
+        
+        if let requestUrl = NSURL(string: "\(detailLaunchArray[0].rocketWideoUrl)") {
+            
+            UIApplication.shared.open(requestUrl as URL, options: [:], completionHandler: nil)
+        }
+        
     }
     
-    private func loadData() {
+    private func setLabelData() {
         
-        self.detailNameLabel.text = detailAgencyArray[0].name
+        let rocketName = detailLaunchArray[0].rocketName
+        
+        self.detailNameLabel.text = detailAgencyArray[0].agencyName
         self.detailDateLabel.text = detailLaunchArray[0].launchDate
-        self.detailStatusLabel.text = detailLaunchArray[0].status
-        self.detailShortNameLabel.text = detailAgencyArray[0].shortName
-        self.detailRocketNameLabel.text = detailLaunchArray[0].rocketName
-        //self.detailImageView.text = ""
-        //self.detailWideoButton.text = ""
+        self.detailStatusLabel.text = detailLaunchArray[0].launchstatus
+        self.detailShortNameLabel.text = detailAgencyArray[0].agencyShortName
+        self.detailRocketNameLabel.text = rocketName.isEmpty ? "Nieznana" : "\(rocketName)"
+        
+        if detailLaunchArray[0].rocketWideoUrl.isEmpty {
+            
+            detailWideoButton.isHidden = true
+            
+        } else {
+            
+             detailWideoButton.isHidden = false
+            
+        }
+        
+        if detailLaunchArray[0].rocketImageUrl.isEmpty {
+            
+            
+        } else {
+            
+            
+        }
+        
         
     }
+    
+    
     
     
 }

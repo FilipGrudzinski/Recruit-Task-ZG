@@ -19,7 +19,7 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     
     
-    private let agencyUrl = "https://launchlibrary.net/1.4/lsp?limit=100"
+    private let agencyUrl = "https://launchlibrary.net/1.4/lsp/"
     private var agencyArray = [AgencyModel]()
 
     
@@ -46,8 +46,8 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainVCTableViewCell
         
         cell.backgroundColor = indexPath.item % 2 == 0 ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.9448125, green: 0.9448125, blue: 0.9448125, alpha: 1)
-        cell.nameLabel.text = "\(agencyArray[indexPath.row].name) (\(agencyArray[indexPath.row].shortName))"
-        cell.countryCodeLabel.text = agencyArray[indexPath.row].countryCode
+        cell.nameLabel.text = "\(agencyArray[indexPath.row].agencyName) (\(agencyArray[indexPath.row].agencyShortName))"
+        cell.countryCodeLabel.text = agencyArray[indexPath.row].agencyCountryCode
         
         return cell
     }
@@ -77,7 +77,7 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         SVProgressHUD.show(withStatus: "In Progress")
         
-        Alamofire.request(agencyUrl, method: .get ).validate(statusCode: 200..<300).responseJSON { response in
+        Alamofire.request(agencyUrl, method: .get).validate().responseJSON { response in
             
             if response.result.value != nil {
                 
@@ -86,12 +86,12 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let agenciesJSON = responseJSON["agencies"]
                 
                 agenciesJSON.array?.forEach({ (agencies) in
-                    let agency = AgencyModel(id: agencies["id"].intValue, name: agencies["name"].stringValue, countryCode: agencies["countryCode"].stringValue, shortName: agencies["abbrev"].stringValue)
+                    let agency = AgencyModel(agencyName: agencies["name"].stringValue, agencyCountryCode: agencies["countryCode"].stringValue, agencyShortName: agencies["abbrev"].stringValue)
                     self.agencyArray.append(agency)
                     
                 })
                 
-                self.agencyArray = self.agencyArray.sorted { $0.name < $1.name }
+                self.agencyArray = self.agencyArray.sorted { $0.agencyName < $1.agencyName }
                 SVProgressHUD.dismiss()
                 self.tableView.reloadData()
                 

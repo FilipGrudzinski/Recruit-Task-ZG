@@ -10,9 +10,8 @@ import Foundation
 
 struct AgencyModel {
     
-    let id: Int
-    let name: String
-    let countryCode: String
-    let shortName: String
+    let agencyName: String
+    let agencyCountryCode: String
+    let agencyShortName: String
     
 }

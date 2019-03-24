@@ -11,7 +11,7 @@
 		1426DE8A22452A5100745C4D /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1426DE8922452A5100745C4D /* Detail.storyboard */; };
 		1426DE8C22452A8A00745C4D /* Rocket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1426DE8B22452A8A00745C4D /* Rocket.storyboard */; };
 		1426DE8E22452B0B00745C4D /* Agencies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1426DE8D22452B0B00745C4D /* Agencies.storyboard */; };
-		1426DE902245841C00745C4D /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1426DE8F2245841C00745C4D /* LaunchModel.swift */; };
+		1426DE902245841C00745C4D /* LaunchRocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1426DE8F2245841C00745C4D /* LaunchRocketModel.swift */; };
 		14C90DD0224441D200E985E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DCF224441D100E985E8 /* AppDelegate.swift */; };
 		14C90DD2224441D200E985E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C90DD1224441D200E985E8 /* LoginViewController.swift */; };
 		14C90DD5224441D200E985E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C90DD3224441D200E985E8 /* Main.storyboard */; };
@@ -32,7 +32,7 @@
 		1426DE8922452A5100745C4D /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		1426DE8B22452A8A00745C4D /* Rocket.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rocket.storyboard; sourceTree = "<group>"; };
 		1426DE8D22452B0B00745C4D /* Agencies.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Agencies.storyboard; sourceTree = "<group>"; };
-		1426DE8F2245841C00745C4D /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
+		1426DE8F2245841C00745C4D /* LaunchRocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRocketModel.swift; sourceTree = "<group>"; };
 		14C90DCC224441D100E985E8 /* Cinkciarz Recruit Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cinkciarz Recruit Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C90DCF224441D100E985E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14C90DD1224441D200E985E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				1425B6DF2245033900BC81CA /* AgencyModel.swift */,
-				1426DE8F2245841C00745C4D /* LaunchModel.swift */,
+				1426DE8F2245841C00745C4D /* LaunchRocketModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 				14C90DE62244478300E985E8 /* AgencyViewController.swift in Sources */,
 				14C90DD2224441D200E985E8 /* LoginViewController.swift in Sources */,
 				14C90DEA2244485900E985E8 /* DetailViewController.swift in Sources */,
-				1426DE902245841C00745C4D /* LaunchModel.swift in Sources */,
+				1426DE902245841C00745C4D /* LaunchRocketModel.swift in Sources */,
 				14C90DED224449CE00E985E8 /* MainVCTableViewCell.swift in Sources */,
 				14C90DF122444A7B00E985E8 /* SwitchRLVCTableViewCell.swift in Sources */,
 				14C90DE82244482200E985E8 /* RocketLaunchViewController.swift in Sources */,

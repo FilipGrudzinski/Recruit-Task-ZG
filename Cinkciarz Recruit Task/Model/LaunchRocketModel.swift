@@ -9,12 +9,15 @@
 import Foundation
 
 
-struct LaunchModel {
+struct LaunchRocketModel {
 
-    let rocketName: String
+    let launchName: String
     let launchDate: String
-    let status: String
-    let id: Int?
+    let launchstatus: String
+    let rocketName: String
+    let rocketImageUrl: String
+    let rocketWideoUrl: String
     
 }
+
 
