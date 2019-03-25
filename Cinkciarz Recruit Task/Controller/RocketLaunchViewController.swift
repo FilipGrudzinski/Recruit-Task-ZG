@@ -205,7 +205,7 @@ extension RocketLaunchViewController {
                 
                 SVProgressHUD.dismiss()
                 self.refreshControl.endRefreshing()
-                self.nillaunchesText = "No Launch in this Agency"
+                self.nillaunchesText = "No Launch in this Agency from this date (default today)"
                 self.rocketTableView.reloadData()
             }
             
