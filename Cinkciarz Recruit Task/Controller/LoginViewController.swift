@@ -25,8 +25,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func biometricButton(_ sender: Any) {
         
-        //authentication()
-        performSegue(withIdentifier: "goToAgencyVC", sender: nil)
+        authentication()
+        //performSegue(withIdentifier: "goToAgencyVC", sender: nil)
         
     }
     
