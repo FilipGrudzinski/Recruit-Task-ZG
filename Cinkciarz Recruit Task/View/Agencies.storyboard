@@ -87,7 +87,7 @@
         <!--Rocket Launch View-->
         <scene sceneID="AMc-uD-Ggk">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Rocket Launch View" storyboardName="Rocket" referencedIdentifier="Rocket Launch View" id="ecU-Q0-YON" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Rocket Launch View" storyboardName="RocketLaunch" referencedIdentifier="Rocket Launch View" id="ecU-Q0-YON" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1M-Vb-lVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2708.6956521739135" y="141.03260869565219"/>

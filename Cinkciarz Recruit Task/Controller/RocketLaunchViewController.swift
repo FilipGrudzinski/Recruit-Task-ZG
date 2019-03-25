@@ -13,41 +13,53 @@ import SVProgressHUD
 
 
 
-class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     
     @IBOutlet weak var rocketTableView: UITableView!
+    @IBOutlet weak var dateFromTextField: UITextField!
+    @IBOutlet weak var dateToTextField: UITextField!
+    @IBOutlet weak var filterButton: UIButton!
     
     
-    var rocketAgencyArray = [AgencyModel]()
     private let refreshControl = UIRefreshControl()
+    private let datePicker = UIDatePicker()
+    
     private let launchUrl = "https://launchlibrary.net/1.4/launch/"
     private var launchRocketArray = [LaunchRocketModel]()
-    private var param = [String : Any]()
-    private var noItemLabel = ""
+    private var defaultParam = [String : Any]()
+    private var currentParam = [String : Any]()
+    private var nillaunchesText = ""
     private var todaysDate = ""
+    private var fromDate = ""
+    private var toDate = ""
     private var totalLaunches = 0
+    private var shortName = ""
+    
+    var rocketAgencyArray = [AgencyModel]()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
+        shortName = rocketAgencyArray[0].agencyShortName
         
+        setupView()
         refreshControl.addTarget(self, action: #selector(refresData(_:)), for: .valueChanged)
         
-        let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        todaysDate = dateFormatter.string(from: date)
-       
-        param = ["lsp" : "\(rocketAgencyArray[0].agencyShortName)","enddate":"\(todaysDate)", "limit" : 20, "sort" : "desc"]
-        loadRocket(param)
-        SVProgressHUD.show(withStatus: "In Progress")
-   
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        todaysDate = dateFormatter.string(from: Date())
+        
+        defaultParam = ["lsp" : shortName, "startdate":"\(todaysDate)", "limit" : 20, "sort" : "desc"]
+        currentParam = defaultParam
+        
+        loadRocket(defaultParam)
         
     }
+    
+
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
@@ -62,11 +74,11 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if launchRocketArray.count == 0 {
-
+            
             return 1
-
+            
         } else {
-        
+            
             return launchRocketArray.count
             
         }
@@ -81,8 +93,8 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         cell.backgroundColor = indexPath.item % 2 == 0 ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.9448125, green: 0.9448125, blue: 0.9448125, alpha: 1)
         
         if launchRocketArray.count == 0 {
-          
-            cell.rocketNameLabel.text = noItemLabel
+            
+            cell.rocketNameLabel.text = nillaunchesText
             
         } else {
             
@@ -95,20 +107,17 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         
         paggingLoadMoreLaunches(indexPath.row)
         
-        
-        
         return cell
         
     }
     
-   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if launchRocketArray.count != 0 {
             
             performSegue(withIdentifier: "goToDetailVC", sender: self)
-           
+            
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -129,28 +138,77 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        
+    }
+    
+    
+    @IBAction func filterButton(_ sender: Any) {
+        
+        self.launchRocketArray.removeAll()
+        self.view.endEditing(true)
+        setFilter()
+        
+    }
+    
+    
+    
+    private func setupView() {
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        title = "Launches " + shortName
+        
+        dateFromTextField.addTarget(self, action: #selector(myTargetFromFunction), for: UIControl.Event.touchDown)
+        dateToTextField.addTarget(self, action: #selector(myTargetToFunction), for: UIControl.Event.touchDown)
+        
+        datePicker.datePickerMode = .date
+        
+        if #available(iOS 10.0, *) {
+            
+            rocketTableView.refreshControl = refreshControl
+            
+        } else {
+            
+            rocketTableView.addSubview(refreshControl)
+            
+        }
+        
+    }
+    
+    
+}
+
+
+
+//MARK: - Extension for Data request and Json save
+
+extension RocketLaunchViewController {
+    
+    
+    
     private func loadRocket(_ parameters:[String : Any]) {
+        
+        SVProgressHUD.show(withStatus: "In Progress")
         
         Alamofire.request(self.launchUrl, method: .get, parameters: parameters).validate().responseJSON { response in
             
             if response.result.value != nil {
-
+                
                 let responseJSON: JSON = JSON(response.result.value!)
                 //print(responseJSON)
                 self.totalLaunches = responseJSON["total"].intValue
-             
                 //print(self.totalLaunches)
-                    
                 self.savingJson(responseJSON)
                 
             } else {
                 
                 SVProgressHUD.dismiss()
                 self.refreshControl.endRefreshing()
-                self.noItemLabel = "No Launch in this Agency"
+                self.nillaunchesText = "No Launch in this Agency"
                 self.rocketTableView.reloadData()
             }
-           
+            
         }
         
     }
@@ -158,7 +216,7 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
     
     private func savingJson(_ json: JSON) {
         
-        noItemLabel = ""
+        nillaunchesText = ""
         let rocketLaunchJSON = json["launches"]
         //print(rocketLaunchJSON)
         rocketLaunchJSON.array?.forEach({ (launches) in
@@ -171,17 +229,16 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
             
         })
         
-        print(self.launchRocketArray.count)
         SVProgressHUD.dismiss()
         self.refreshControl.endRefreshing()
         self.rocketTableView.reloadData()
         
     }
- 
-   
+    
+    
     @objc private func refresData(_ sender: Any) {
         
-        self.noItemLabel = ""
+        self.nillaunchesText = ""
         self.launchRocketArray.removeAll()
         self.rocketTableView.reloadData()
         
@@ -189,7 +246,7 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         let when = DispatchTime.now() + 0.1
         DispatchQueue.main.asyncAfter(deadline: when){
             
-            self.loadRocket(self.param)
+            self.loadRocket(self.currentParam)
             
         }
         
@@ -203,23 +260,11 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
             if totalLaunches > launchRocketArray.count {
                 
                 let offset = launchRocketArray.count
-                let params: [String : Any] = ["lsp" : "\(rocketAgencyArray[0].agencyShortName)","enddate":"\(self.todaysDate)", "limit" : 20, "offset": offset, "sort" : "desc"]
-                //print("ilosc w array\(offset)")
-                self.loadRocket(params)
+                self.currentParam["offset"] = offset
+                self.loadRocket(currentParam)
                 
             }
             
-        }
-        
-    }
-    
-    
-    private func setupTableView() {
-        
-        if #available(iOS 10.0, *) {
-            rocketTableView.refreshControl = refreshControl
-        } else {
-            rocketTableView.addSubview(refreshControl)
         }
         
     }
@@ -247,5 +292,114 @@ class RocketLaunchViewController: UIViewController, UITableViewDataSource, UITab
         }
         
     }
+    
+    
+    private func setFilter() {
+        
+        if dateFromTextField.text != "" && dateToTextField.text != "" {
+            
+            self.fromDate = dateFromTextField.text!
+            self.toDate = dateToTextField.text!
+            currentParam = ["lsp" : shortName,"startdate": fromDate, "enddate": toDate, "limit" : 20, "sort" : "desc"]
+            self.loadRocket(currentParam)
+            
+            
+        } else if dateFromTextField.text != "" {
+            
+            self.fromDate = dateFromTextField.text!
+            currentParam = ["lsp" : shortName, "startdate": self.fromDate, "limit" : 20, "sort" : "asc"]
+            loadRocket(currentParam)
+            
+        } else if dateToTextField.text != "" {
+            
+            self.toDate = dateToTextField.text!
+            currentParam = ["lsp" : shortName, "enddate": self.toDate, "limit" : 20, "sort" : "asc"]
+            loadRocket(currentParam)
+            
+        } else {
+            
+            currentParam = defaultParam
+            loadRocket(currentParam)
+            
+        }
+        
+    }
+    
+    
+}
+
+
+
+extension RocketLaunchViewController {
+    
+    
+    
+    @objc func myTargetFromFunction(textField: UITextField) {
+        textField.tag = 1
+        self.shwoDataPicker(textField.tag)
+    }
+    
+    @objc func myTargetToFunction(textField: UITextField) {
+        textField.tag = 2
+        self.shwoDataPicker(textField.tag)
+    }
+    
+    
+    private func shwoDataPicker(_ tag: Int) {
+        //Formate Date
+        
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        
+        if tag == 1 {
+            
+            let doneButton = UIBarButtonItem(title: "Set", style: .plain, target: self, action: #selector(dateFromFromDate));
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelDatePicker));
+            
+            toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+            
+            dateFromTextField.inputView = datePicker
+            dateFromTextField.inputAccessoryView = toolbar
+            
+        } else if tag == 2 {
+            
+            let doneButton = UIBarButtonItem(title: "Set", style: .plain, target: self, action: #selector(dateFromToDate));
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelDatePicker));
+            
+            toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+            
+            dateToTextField.inputView = datePicker
+            dateToTextField.inputAccessoryView = toolbar
+            
+        }
+        
+    }
+    
+    
+    @objc func dateFromFromDate() {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFromTextField.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
+    
+    
+    @objc func dateFromToDate() {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateToTextField.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
+    
+    
+    @objc func cancelDatePicker() {
+        self.view.endEditing(true)
+    }
+    
     
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 import Kingfisher
+import SVProgressHUD
+
 
 class DetailViewController: UIViewController {
     
@@ -27,10 +29,10 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setLabelData()
-        //setImage()
-
+        setImage()
+        
     }
     
     
@@ -52,7 +54,7 @@ class DetailViewController: UIViewController {
         detailStatusLabel.text = detailLaunchArray[0].launchstatus
         detailShortNameLabel.text = detailAgencyArray[0].agencyShortName
         detailRocketNameLabel.text = rocketName.isEmpty ? "Nieznana" : "\(rocketName)"
-        //detailImageView.kf.setImage(with: URL(string: detailLaunchArray[0].rocketImageUrl))
+        
         
         if detailLaunchArray[0].rocketWideoUrl.isEmpty {
             
@@ -69,19 +71,22 @@ class DetailViewController: UIViewController {
     
     private func setImage() {
         
-        if detailLaunchArray[0].rocketImageUrl.isEmpty {
+        
+        DispatchQueue.main.async {
             
-            detailImageView.image = nil
-            
-        } else {
-            
-            
+            if self.detailLaunchArray[0].rocketImageUrl.isEmpty {
+                
+                self.detailImageView.image = nil
+                
+            } else {
+                
+                self.detailImageView.kf.setImage(with: URL(string: self.detailLaunchArray[0].rocketImageUrl), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, URL) in
+                    self.view.setNeedsLayout() } )
+                
+            }
         }
         
-        
     }
-    
-    
     
     
 }

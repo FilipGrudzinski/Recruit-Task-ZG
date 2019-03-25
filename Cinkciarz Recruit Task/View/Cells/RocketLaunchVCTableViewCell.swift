@@ -18,8 +18,6 @@ class RocketLaunchVCTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        //rocketNameLabel.adjustsFontSizeToFitWidth = true
-        
         rocketNameLabel.text = ""
         shortNameLabel.text = ""
         rocketLaunchDate.text = ""

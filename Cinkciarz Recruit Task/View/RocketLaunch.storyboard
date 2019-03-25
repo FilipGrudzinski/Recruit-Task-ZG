@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,18 +15,54 @@
             <objects>
                 <viewController storyboardIdentifier="Rocket Launch View" title="Rocket Launch" id="uFL-sM-KaJ" customClass="RocketLaunchViewController" customModule="Cinkciarz_Recruit_Task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3vB-b7-nUT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Iii-Pr-nZz">
+                                <rect key="frame" x="4" y="30" width="312" height="30"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="date From" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tGZ-PT-hLm">
+                                        <rect key="frame" x="0.0" y="0.0" width="134.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="uFL-sM-KaJ" id="AE4-7h-ue2"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="date To" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJK-PW-fke">
+                                        <rect key="frame" x="138.5" y="0.0" width="134.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="uFL-sM-KaJ" id="0x2-iV-aHJ"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5y6-Kf-0Vz">
+                                        <rect key="frame" x="277" y="0.0" width="35" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="uUj-cP-Fnm"/>
+                                        </constraints>
+                                        <state key="normal" title="Filter"/>
+                                        <connections>
+                                            <action selector="filterButton:" destination="uFL-sM-KaJ" eventType="touchUpInside" id="dYu-3S-eU4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tGZ-PT-hLm" firstAttribute="width" secondItem="eJK-PW-fke" secondAttribute="width" id="Das-zN-jda"/>
+                                </constraints>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QNT-nP-YD0">
-                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="83" id="Ll1-TX-WPc" customClass="RocketLaunchVCTableViewCell" customModule="Cinkciarz_Recruit_Task" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="83"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ll1-TX-WPc" id="Nwy-xt-4tc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wSz-eJ-QQT">
@@ -95,62 +131,23 @@
                                     <outlet property="delegate" destination="uFL-sM-KaJ" id="id4-Sq-LC2"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="JGM-84-bRJ">
-                                <rect key="frame" x="4" y="30" width="367" height="30"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gqr-OH-pgA">
-                                        <rect key="frame" x="0.0" y="0.0" width="182.5" height="30"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data od" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Td5-gf-n6H">
-                                                <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tGZ-PT-hLm">
-                                                <rect key="frame" x="62" y="0.0" width="120.5" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Ail-wd-4sv">
-                                        <rect key="frame" x="184.5" y="0.0" width="182.5" height="30"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data do" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fup-qP-0aX">
-                                                <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJK-PW-fke">
-                                                <rect key="frame" x="62" y="0.0" width="120.5" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="gqr-OH-pgA" firstAttribute="width" secondItem="Ail-wd-4sv" secondAttribute="width" id="Z5i-uL-xR8"/>
-                                </constraints>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="QNT-nP-YD0" firstAttribute="leading" secondItem="i6P-CI-dFg" secondAttribute="leading" id="0tr-34-CAj"/>
+                            <constraint firstItem="Iii-Pr-nZz" firstAttribute="top" secondItem="i6P-CI-dFg" secondAttribute="top" constant="10" id="1ur-Eb-Abb"/>
+                            <constraint firstItem="Iii-Pr-nZz" firstAttribute="leading" secondItem="i6P-CI-dFg" secondAttribute="leading" constant="4" id="36J-ie-gPz"/>
                             <constraint firstItem="QNT-nP-YD0" firstAttribute="trailing" secondItem="i6P-CI-dFg" secondAttribute="trailing" id="5Lh-FC-lWM"/>
-                            <constraint firstItem="i6P-CI-dFg" firstAttribute="trailing" secondItem="JGM-84-bRJ" secondAttribute="trailing" constant="4" id="NMR-YA-Pjz"/>
-                            <constraint firstItem="JGM-84-bRJ" firstAttribute="leading" secondItem="i6P-CI-dFg" secondAttribute="leading" constant="4" id="P9Y-Bv-KSC"/>
-                            <constraint firstItem="JGM-84-bRJ" firstAttribute="top" secondItem="i6P-CI-dFg" secondAttribute="top" constant="10" id="aZe-AN-xF3"/>
-                            <constraint firstItem="QNT-nP-YD0" firstAttribute="top" secondItem="JGM-84-bRJ" secondAttribute="bottom" constant="10" id="f75-Pg-NwQ"/>
+                            <constraint firstItem="i6P-CI-dFg" firstAttribute="trailing" secondItem="Iii-Pr-nZz" secondAttribute="trailing" constant="4" id="itB-73-PM8"/>
                             <constraint firstItem="QNT-nP-YD0" firstAttribute="bottom" secondItem="i6P-CI-dFg" secondAttribute="bottom" id="loD-Hv-mvA"/>
+                            <constraint firstItem="QNT-nP-YD0" firstAttribute="top" secondItem="Iii-Pr-nZz" secondAttribute="bottom" constant="10" id="oA1-0R-0dU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i6P-CI-dFg"/>
                     </view>
                     <connections>
+                        <outlet property="dateFromTextField" destination="tGZ-PT-hLm" id="NhV-Xa-a7z"/>
+                        <outlet property="dateToTextField" destination="eJK-PW-fke" id="brb-JG-caL"/>
+                        <outlet property="filterButton" destination="5y6-Kf-0Vz" id="Ude-xk-LIZ"/>
                         <outlet property="rocketTableView" destination="QNT-nP-YD0" id="JgN-Jc-8RA"/>
                         <segue destination="zCV-mw-86s" kind="show" identifier="goToDetailVC" id="XQ0-AM-EfK"/>
                     </connections>

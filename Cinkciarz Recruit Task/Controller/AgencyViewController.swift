@@ -23,16 +23,17 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var agencyArray = [AgencyModel]()
     private var noItemLabel = ""
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
-        loadAgency()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         refreshControl.addTarget(self, action: #selector(refresData(_:)), for: .valueChanged)
         
-        tableView.rowHeight = UITableView.automaticDimension
-        
+        setupTableView()
+        loadAgency()
+       
     }
     
     
@@ -101,6 +102,25 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+  
+    private func setupTableView() {
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
+    }
+    
+}
+
+
+
+//MARK: - Extension for Data request and Json save
+
+extension AgencyViewController {
+    
     private func loadAgency() {
         
         SVProgressHUD.show(withStatus: "In Progress")
@@ -160,17 +180,6 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             self.loadAgency()
             
-        }
-        
-    }
-    
-    
-    private func setupTableView() {
-        
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
         }
         
     }

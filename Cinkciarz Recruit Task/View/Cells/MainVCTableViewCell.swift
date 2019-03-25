@@ -15,6 +15,9 @@ class MainVCTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        nameLabel.text = ""
+        countryCodeLabel.text = ""
 
     }
 
@@ -24,8 +27,10 @@ class MainVCTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
+        
         nameLabel.text = ""
         countryCodeLabel.text = ""
     }
+    
     
 }
